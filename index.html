@@ -22,891 +22,305 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; font-size: 16px; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-body);
-    background: var(--white);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4, h5 {
-    font-family: 'Syne', sans-serif;
-    color: var(--navy);
-    line-height: 1.15;
-  }
-
+  body { font-family: 'DM Sans', sans-serif; color: var(--text-body); background: var(--white); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, h5 { font-family: 'Syne', sans-serif; color: var(--navy); line-height: 1.15; }
   a { color: var(--blue); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    padding: 0 2rem;
-  }
-  nav.scrolled {
-    border-color: var(--border);
-    box-shadow: 0 2px 16px rgba(26,26,46,0.08);
-  }
-  .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--navy);
-    text-decoration: none;
-    white-space: nowrap;
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span {
-    font-weight: 400;
-    color: #5a5a7a;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--navy);
-    text-decoration: none;
-    letter-spacing: 0.01em;
-    opacity: 0.75;
-    transition: opacity 0.2s;
-  }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; padding: 0 2rem; }
+  nav.scrolled { border-color: var(--border); box-shadow: 0 2px 16px rgba(26,26,46,0.08); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--navy); text-decoration: none; white-space: nowrap; letter-spacing: -0.02em; }
+  .nav-logo span { font-weight: 400; color: #5a5a7a; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; opacity: 0.75; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
-  .btn-nav {
-    background: var(--green);
-    color: var(--white) !important;
-    padding: 0.55rem 1.25rem;
-    border-radius: 6px;
-    font-size: 0.88rem !important;
-    font-weight: 600 !important;
-    opacity: 1 !important;
-    transition: background 0.2s !important;
-    white-space: nowrap;
-  }
+  .btn-nav { background: var(--green); color: var(--white) !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.88rem !important; font-weight: 600 !important; opacity: 1 !important; transition: background 0.2s !important; white-space: nowrap; }
   .btn-nav:hover { background: var(--green-light) !important; text-decoration: none !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
 
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--navy);
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
+  /* BUTTONS */
+  .btn { display: inline-block; padding: 0.85rem 1.75rem; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; border: 2px solid transparent; white-space: nowrap; }
+  .btn-primary { background: var(--green); color: var(--white); border-color: var(--green); }
+  .btn-primary:hover { background: var(--green-light); border-color: var(--green-light); text-decoration: none; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,122,74,0.3); }
+  .btn-secondary { background: transparent; color: var(--navy); border-color: var(--navy); }
+  .btn-secondary:hover { background: var(--navy); color: var(--white); text-decoration: none; transform: translateY(-1px); }
+  .btn-white { background: var(--white); color: var(--green); border-color: var(--white); }
+  .btn-white:hover { background: #f0faf5; text-decoration: none; transform: translateY(-1px); }
 
-  /* ─── BUTTONS ─── */
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 1.75rem;
-    border-radius: 7px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 2px solid transparent;
-    white-space: nowrap;
-  }
-  .btn-primary {
-    background: var(--green);
-    color: var(--white);
-    border-color: var(--green);
-  }
-  .btn-primary:hover {
-    background: var(--green-light);
-    border-color: var(--green-light);
-    text-decoration: none;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(26,122,74,0.3);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--navy);
-    border-color: var(--navy);
-  }
-  .btn-secondary:hover {
-    background: var(--navy);
-    color: var(--white);
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-  .btn-white {
-    background: var(--white);
-    color: var(--green);
-    border-color: var(--white);
-  }
-  .btn-white:hover {
-    background: #f0faf5;
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-
-  /* ─── SECTIONS ─── */
+  /* SECTIONS */
   section { padding: 100px 2rem; }
   .container { max-width: 1200px; margin: 0 auto; }
-  .section-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 1rem;
-    border: 1px solid rgba(26,122,74,0.25);
-    padding: 0.3rem 0.75rem;
-    border-radius: 3px;
-    background: rgba(26,122,74,0.06);
-  }
+  .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; border: 1px solid rgba(26,122,74,0.25); padding: 0.3rem 0.75rem; border-radius: 3px; background: rgba(26,122,74,0.06); }
+  .section-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.025em; }
+  .section-sub { font-size: 1.05rem; color: #666; margin-bottom: 3.5rem; max-width: 560px; line-height: 1.6; font-weight: 300; }
 
-  /* ─── HERO ─── */
-  #hero {
-    padding: 160px 2rem 100px;
-    background: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  /* Geometric pipeline SVG bg */
-  .hero-grid {
-    position: absolute;
-    top: 0; right: -10%;
-    width: 55%;
-    height: 100%;
-    opacity: 0.045;
-  }
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
+  /* HERO */
+  #hero { padding: 160px 2rem 100px; background: var(--white); position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .hero-grid { position: absolute; top: 0; right: -10%; width: 55%; height: 100%; opacity: 0.045; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
   .hero-content { max-width: 700px; }
-  h1.hero-headline {
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    font-weight: 800;
-    color: var(--navy);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-  }
-  h1.hero-headline em {
-    font-style: normal;
-    color: var(--blue);
-  }
-  .hero-sub {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.6;
-    max-width: 580px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3.5rem;
-  }
-  .hero-trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 2.5rem;
-  }
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-body);
-    font-weight: 500;
-  }
-  .trust-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    flex-shrink: 0;
-  }
-  /* Pipeline viz */
-  .hero-visual {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 420px;
-    opacity: 0.9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  h1.hero-headline { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; color: var(--navy); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  h1.hero-headline em { font-style: normal; color: var(--blue); }
+  .hero-sub { font-size: 1.2rem; color: #555; line-height: 1.6; max-width: 600px; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-body); font-weight: 500; }
+  .trust-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
-  /* ─── PROBLEM ─── */
+  /* PROBLEM */
   #problem { background: var(--gray-bg); }
-  .section-title {
-    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    letter-spacing: -0.025em;
-  }
-  .section-sub {
-    font-size: 1.05rem;
-    color: #666;
-    margin-bottom: 3.5rem;
-    max-width: 560px;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 2rem;
-    border: 1px solid var(--border);
-    box-shadow: var(--card-shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(26,26,46,0.12);
-  }
-  .card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: rgba(26,26,46,0.07);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    font-size: 1.2rem;
-  }
-  .card h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
-  }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .card { background: var(--white); border-radius: 12px; padding: 2rem; border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,26,46,0.12); }
+  .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(26,26,46,0.07); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.2rem; }
+  .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
   .card p { font-size: 0.93rem; line-height: 1.65; color: var(--text-body); }
 
-  /* ─── HOW IT WORKS ─── */
+  /* ROI STRIP */
+  .roi-strip { background: #f0faf5; border: 1px solid rgba(26,122,74,0.2); border-radius: 12px; padding: 1.75rem 2.5rem; margin-top: 4rem; display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: center; }
+  .roi-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.5rem; }
+  .roi-stat { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--navy); letter-spacing: -0.04em; line-height: 1; }
+  .roi-desc { font-size: 0.82rem; color: #666; margin-top: 0.25rem; max-width: 200px; line-height: 1.4; }
+  .roi-divider { width: 1px; height: 50px; background: rgba(26,122,74,0.2); flex-shrink: 0; }
+
+  /* HOW IT WORKS */
   #how-it-works { background: var(--white); }
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-top: 0;
-  }
-  .step-card {
-    padding: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    position: relative;
-    background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .step-card:hover {
-    border-color: var(--blue);
-    box-shadow: 0 4px 24px rgba(0,85,204,0.1);
-  }
-  .step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: rgba(26,26,46,0.08);
-    line-height: 1;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.05em;
-  }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  .step-card { padding: 2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; }
+  .step-card:hover { border-color: var(--blue); box-shadow: 0 4px 24px rgba(0,85,204,0.1); }
+  .step-num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: rgba(26,26,46,0.08); line-height: 1; margin-bottom: 0.75rem; letter-spacing: -0.05em; }
   .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
   .step-card p { font-size: 0.9rem; line-height: 1.65; color: var(--text-body); }
 
-  /* ─── WHO WE WORK WITH ─── */
+  /* WHO WE WORK WITH */
   #who { background: var(--navy); }
   #who .section-title, #who h3 { color: var(--white); }
   #who .section-sub { color: rgba(255,255,255,0.6); }
-  .who-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  .who-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: background 0.2s;
-  }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  .who-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 2rem; transition: background 0.2s; }
   .who-card:hover { background: rgba(255,255,255,0.08); }
   .who-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; color: rgba(255,255,255,0.95); letter-spacing: 0.01em; }
   .who-card p { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.6); }
-  .not-for {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 2rem 2.5rem;
-  }
+  .not-for { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem 2.5rem; }
   .not-for h3 { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 1.25rem; }
-  .not-for-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem 2rem;
-  }
-  .not-for-list li {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.55);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    line-height: 1.5;
-  }
-  .not-for-list li::before {
-    content: '✕';
-    color: rgba(255,80,80,0.7);
-    font-size: 0.75rem;
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
+  .not-for-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem 2rem; }
+  .not-for-list li { font-size: 0.9rem; color: rgba(255,255,255,0.55); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+  .not-for-list li::before { content: '✕'; color: rgba(255,80,80,0.7); font-size: 0.75rem; margin-top: 2px; flex-shrink: 0; }
 
-  /* ─── PRICING ─── */
+  /* PRICING */
   #pricing { background: var(--gray-bg); }
-  .pricing-sub-line {
-    font-size: 1rem;
-    color: #888;
-    margin-top: 0.5rem;
-    font-style: italic;
-  }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-    margin-top: 3.5rem;
-  }
-  .pricing-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 2.25rem;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .pricing-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(26,26,46,0.12);
-  }
-  .pricing-card.featured {
-    border-color: var(--blue);
-    border-width: 2px;
-    box-shadow: 0 8px 40px rgba(0,85,204,0.15);
-    position: relative;
-    transform: scale(1.01);
-  }
-  .pricing-card.featured:hover {
-    transform: scale(1.01) translateY(-4px);
-  }
-  .pricing-badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 1.25rem;
-    background: rgba(26,122,74,0.1);
-    color: var(--green);
-  }
-  .pricing-card.featured .pricing-badge {
-    background: rgba(0,85,204,0.1);
-    color: var(--blue);
-  }
-  .pricing-name {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-  .pricing-price {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--navy);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; margin-top: 3.5rem; }
+  .pricing-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2.25rem; box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,26,46,0.12); }
+  .pricing-card.featured { border-color: var(--blue); border-width: 2px; box-shadow: 0 8px 40px rgba(0,85,204,0.15); position: relative; transform: scale(1.01); }
+  .pricing-card.featured:hover { transform: scale(1.01) translateY(-4px); }
+  .pricing-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; background: rgba(26,122,74,0.1); color: var(--green); }
+  .pricing-card.featured .pricing-badge { background: rgba(0,85,204,0.1); color: var(--blue); }
+  .pricing-name { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .pricing-price { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--navy); letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; }
   .pricing-price span { font-size: 1.1rem; font-weight: 400; color: #888; }
-  .pricing-commitment {
-    font-size: 0.8rem;
-    color: #888;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .pricing-features {
-    list-style: none;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-  .pricing-features li {
-    font-size: 0.88rem;
-    color: var(--text-body);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    line-height: 1.5;
-  }
-  .pricing-features li::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-    font-size: 0.8rem;
-    margin-top: 1px;
-    flex-shrink: 0;
-  }
+  .pricing-commitment { font-size: 0.8rem; color: #888; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--border); }
+  .pricing-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.65rem; }
+  .pricing-features li { font-size: 0.88rem; color: var(--text-body); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+  .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 0.8rem; margin-top: 1px; flex-shrink: 0; }
   .pricing-cta { width: 100%; text-align: center; }
-  .pricing-note {
-    font-size: 0.78rem;
-    color: #999;
-    text-align: center;
-    margin-top: 0.85rem;
-  }
+  .pricing-note { font-size: 0.78rem; color: #999; text-align: center; margin-top: 0.85rem; }
 
-  /* ─── RISK REVERSAL ─── */
-  #risk {
-    background: var(--navy);
-    padding: 100px 2rem;
-  }
-  .risk-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  /* COMPARISON TABLE */
+  #comparison { background: var(--white); }
+  .compare-table-wrap { overflow-x: auto; margin-top: 2.5rem; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .compare-table th { padding: 1rem 1.25rem; text-align: left; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.02em; }
+  .compare-table th:first-child { color: var(--navy); }
+  .compare-table th.col-us { background: var(--navy); color: var(--white); border-radius: 8px 8px 0 0; }
+  .compare-table th.col-agency { background: var(--gray-bg); color: #666; }
+  .compare-table th.col-sdr { background: var(--gray-bg); color: #666; }
+  .compare-table td { padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .compare-table td:first-child { font-weight: 600; color: var(--navy); font-size: 0.88rem; }
+  .compare-table td.col-us { background: rgba(26,26,46,0.03); font-weight: 600; color: var(--navy); border-left: 2px solid var(--navy); border-right: 2px solid var(--navy); }
+  .compare-table td.col-us .check { color: var(--green); font-weight: 700; }
+  .compare-table td.col-agency, .compare-table td.col-sdr { color: #888; }
+  .compare-table tbody tr:last-child td.col-us { border-radius: 0 0 0 0; border-bottom: 2px solid var(--navy); }
+  .compare-table tbody tr:hover td { background: rgba(26,26,46,0.015); }
+  .compare-table tbody tr:hover td.col-us { background: rgba(26,26,46,0.05); }
+
+  /* BENCHMARKS */
+  #benchmarks { background: var(--gray-bg); }
+  .benchmark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .benchmark-card { background: var(--white); border-radius: 12px; padding: 2rem; border: 1px solid var(--border); text-align: center; }
+  .benchmark-number { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--blue); letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.5rem; }
+  .benchmark-label { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .benchmark-desc { font-size: 0.82rem; color: #888; line-height: 1.5; }
+  .benchmark-note { background: var(--white); border: 1px solid rgba(26,122,74,0.2); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 2rem; border-left: 4px solid var(--green); }
+  .benchmark-note p { font-size: 0.93rem; line-height: 1.7; color: var(--text-body); }
+
+  /* SAMPLE REPORT */
+  #sample-report { background: var(--white); }
+  .report-mockup { background: var(--navy); border-radius: 16px; padding: 2.5rem; max-width: 780px; margin: 2.5rem auto 0; }
+  .report-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .report-title { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .report-badge { background: rgba(26,122,74,0.3); color: #6de0a0; font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 4px; letter-spacing: 0.06em; }
+  .report-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+  .report-stat { text-align: center; }
+  .report-stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; }
+  .report-stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; }
+  .report-rows { display: flex; flex-direction: column; gap: 0; }
+  .report-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .report-row:last-child { border-bottom: none; }
+  .report-row-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+  .report-row-value { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+  .report-row-value.positive { color: #6de0a0; }
+  .report-blur-note { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+
+  /* TIMELINE EXPECTATIONS */
+  #timeline { background: var(--gray-bg); }
+  .timeline-list { max-width: 680px; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); position: relative; }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .timeline-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--white); flex-shrink: 0; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding-top: 6px; }
+  .timeline-when { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.3rem; }
+  .timeline-what { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+  .timeline-desc { font-size: 0.88rem; color: #666; line-height: 1.6; }
+
+  /* WHAT HAPPENS AFTER BOOKING */
+  #after-booking { background: var(--white); }
+  .after-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+  .after-steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px; background: var(--border); z-index: 0; }
+  .after-step { text-align: center; position: relative; z-index: 1; }
+  .after-step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--white); margin: 0 auto 1rem; border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--navy); }
+  .after-step h4 { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .after-step p { font-size: 0.82rem; color: #777; line-height: 1.55; }
+
+  /* RISK REVERSAL */
+  #risk { background: var(--navy); padding: 100px 2rem; }
+  .risk-inner { max-width: 800px; margin: 0 auto; text-align: center; }
   #risk .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
-  .risk-body {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.75;
-    margin: 2rem 0 2.5rem;
-    font-weight: 300;
-  }
-  .risk-signals {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-  }
-  .risk-signal {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 6px;
-    padding: 0.6rem 1.1rem;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.75);
-    font-weight: 500;
-  }
+  .risk-body { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.75; margin: 2rem 0 2.5rem; font-weight: 300; }
+  .risk-signals { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2.5rem; }
+  .risk-signal { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 0.6rem 1.1rem; font-size: 0.85rem; color: rgba(255,255,255,0.75); font-weight: 500; }
 
-  /* ─── FAQ ─── */
+  /* FAQ */
   #faq { background: var(--white); }
   .faq-list { max-width: 780px; margin-top: 2.5rem; }
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-  }
-  .faq-question {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 1.5rem 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--navy);
-    transition: color 0.2s;
-  }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 1.5rem 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); transition: color 0.2s; }
   .faq-question:hover { color: var(--blue); }
-  .faq-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s;
-    font-size: 0.85rem;
-    color: var(--text-body);
-  }
-  .faq-item.open .faq-icon {
-    border-color: var(--blue);
-    color: var(--blue);
-    transform: rotate(45deg);
-  }
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-  .faq-answer-inner {
-    padding-bottom: 1.5rem;
-    font-size: 0.93rem;
-    line-height: 1.75;
-    color: var(--text-body);
-  }
+  .faq-icon { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; font-size: 0.85rem; color: var(--text-body); }
+  .faq-item.open .faq-icon { border-color: var(--blue); color: var(--blue); transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .faq-answer-inner { padding-bottom: 1.5rem; font-size: 0.93rem; line-height: 1.75; color: var(--text-body); }
 
-  /* ─── ABOUT ─── */
+  /* ABOUT */
   #about { background: var(--gray-bg); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .about-content h2 { margin-bottom: 1.25rem; }
-  .about-content p {
-    font-size: 1rem;
-    line-height: 1.75;
-    color: #555;
-    margin-bottom: 1rem;
-    font-weight: 300;
-  }
-  .about-signals {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .about-signal {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
-    background: var(--white);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .signal-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(26,122,74,0.1);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-  }
+  .about-content p { font-size: 1rem; line-height: 1.75; color: #555; margin-bottom: 1rem; font-weight: 300; }
+  .about-signals { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .about-signal { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.25rem; background: var(--white); border-radius: 8px; border: 1px solid var(--border); }
+  .signal-icon { width: 36px; height: 36px; background: rgba(26,122,74,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
   .about-signal p { font-size: 0.88rem; color: var(--text-body); line-height: 1.5; margin: 0; font-weight: 400; }
   .about-signal strong { color: var(--navy); }
 
-  /* Pipeline vis box */
-  .about-visual {
-    background: var(--navy);
-    border-radius: 16px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .pipeline-flow { display: flex; flex-direction: column; gap: 0; }
-  .pipe-step {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.9rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    position: relative;
-  }
-  .pipe-step:last-child { border-bottom: none; }
-  .pipe-step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.3);
-    width: 20px;
-    flex-shrink: 0;
-  }
-  .pipe-step-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: rgba(0,85,204,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-  }
-  .pipe-step-text { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 400; }
-  .pipe-step-tag {
-    margin-left: auto;
-    font-size: 0.65rem;
-    background: rgba(26,122,74,0.25);
-    color: #4db87a;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
+  /* FOUNDER BLOCK */
+  .founder-block { display: flex; gap: 1.75rem; align-items: flex-start; margin-top: 2rem; background: var(--white); border-radius: 12px; padding: 1.75rem; border: 1px solid var(--border); }
+  .founder-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--white); flex-shrink: 0; letter-spacing: -0.04em; }
+  .founder-info h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+  .founder-info .founder-title { font-size: 0.82rem; color: #888; margin-bottom: 0.75rem; }
+  .founder-info p { font-size: 0.88rem; line-height: 1.65; color: #555; }
 
-  /* ─── BOOKING CTA ─── */
-  #book {
-    background: var(--navy);
-    padding: 100px 2rem;
-  }
-  .book-inner {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  /* EXPERIENCING PRODUCT */
+  .experiencing-product { background: rgba(26,26,46,0.04); border: 1px solid rgba(26,26,46,0.1); border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; border-left: 4px solid var(--blue); }
+  .experiencing-product p { font-size: 0.9rem; line-height: 1.65; color: var(--text-body); margin: 0; }
+  .experiencing-product strong { color: var(--navy); }
+
+  /* ABOUT VISUAL */
+  .about-visual { background: var(--navy); border-radius: 16px; padding: 2.5rem; position: relative; overflow: hidden; }
+  .pipeline-flow { display: flex; flex-direction: column; gap: 0; }
+  .pipe-step { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .pipe-step:last-child { border-bottom: none; }
+  .pipe-step-num { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.3); width: 20px; flex-shrink: 0; }
+  .pipe-step-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(0,85,204,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
+  .pipe-step-text { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 400; }
+  .pipe-step-tag { margin-left: auto; font-size: 0.65rem; background: rgba(26,122,74,0.25); color: #4db87a; padding: 0.2rem 0.5rem; border-radius: 3px; font-weight: 600; letter-spacing: 0.05em; white-space: nowrap; }
+
+  /* BOOK CTA */
+  #book { background: var(--navy); padding: 100px 2rem; }
+  .book-inner { max-width: 700px; margin: 0 auto; text-align: center; }
   #book .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 1rem; }
   #book .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; max-width: 100%; }
-  .book-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin: 2rem auto 2.5rem;
-    text-align: left;
-    max-width: 480px;
-  }
-  .book-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.65);
-  }
-  .book-step::before {
-    content: '→';
-    color: var(--green);
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .book-note {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.35);
-    margin-top: 1rem;
-    letter-spacing: 0.02em;
-  }
+  .book-steps { display: flex; flex-direction: column; gap: 0.75rem; margin: 2rem auto 2.5rem; text-align: left; max-width: 480px; }
+  .book-step { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+  .book-step::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .book-note { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-top: 1rem; letter-spacing: 0.02em; }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: #11111f;
-    padding: 3rem 2rem;
-    color: rgba(255,255,255,0.4);
-  }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+  /* FOOTER */
+  footer { background: #11111f; padding: 3rem 2rem; color: rgba(255,255,255,0.4); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
   .footer-brand .nav-logo { color: rgba(255,255,255,0.85); }
   .footer-brand .nav-logo span { color: rgba(255,255,255,0.4); }
-  .footer-tagline {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.35);
-    margin-top: 0.5rem;
-    max-width: 260px;
-    line-height: 1.5;
-  }
-  .footer-links {
-    display: flex;
-    gap: 1.75rem;
-    list-style: none;
-  }
-  .footer-links a {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-top: 0.5rem; max-width: 260px; line-height: 1.5; }
+  .footer-links { display: flex; gap: 1.75rem; list-style: none; }
+  .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: rgba(255,255,255,0.85); text-decoration: none; }
   .footer-right { text-align: right; }
-  .footer-email a {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-email a { font-size: 0.88rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
   .footer-email a:hover { color: var(--green); text-decoration: none; }
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 2rem auto 0;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.25);
-  }
+  .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.25); }
 
-  /* ─── ROI STRIP ─── */
-  .roi-strip {
-    background: #f0faf5;
-    border: 1px solid rgba(26,122,74,0.2);
-    border-radius: 12px;
-    padding: 1.75rem 2.5rem;
-    margin-top: 4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 3rem;
-    align-items: center;
-  }
-  .roi-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--green);
-    margin-bottom: 0.5rem;
-  }
-  .roi-stat {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--navy);
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-  .roi-desc {
-    font-size: 0.82rem;
-    color: #666;
-    margin-top: 0.25rem;
-    max-width: 200px;
-    line-height: 1.4;
-  }
-  .roi-divider {
-    width: 1px;
-    height: 50px;
-    background: rgba(26,122,74,0.2);
-    flex-shrink: 0;
-  }
-
-  /* ─── MOBILE NAV ─── */
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-    z-index: 99;
-    padding: 1.5rem 2rem;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
+  /* MOBILE NAV */
+  .mobile-nav { display: none; position: fixed; top: 68px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 99; padding: 1.5rem 2rem; flex-direction: column; gap: 1.25rem; }
   .mobile-nav.open { display: flex; }
-  .mobile-nav a {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--navy);
-    text-decoration: none;
-    opacity: 0.8;
-  }
-  .mobile-nav .btn-nav {
-    width: fit-content;
-    padding: 0.65rem 1.5rem;
-    font-size: 0.95rem !important;
-  }
+  .mobile-nav a { font-size: 1rem; font-weight: 600; color: var(--navy); text-decoration: none; opacity: 0.8; }
+  .mobile-nav .btn-nav { width: fit-content; padding: 0.65rem 1.5rem; font-size: 0.95rem !important; }
 
-  /* ─── RESPONSIVE ─── */
+  /* RESPONSIVE */
   @media (max-width: 1024px) {
     .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
     .pricing-card.featured { transform: none; }
-    .pricing-card.featured:hover { transform: translateY(-4px); }
     .about-grid { grid-template-columns: 1fr; }
     .about-visual { order: -1; }
-    .roi-strip { gap: 1rem; }
-    .roi-divider { display: none; }
+    .after-steps { grid-template-columns: repeat(2, 1fr); }
+    .after-steps::before { display: none; }
+    .report-stats { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
     section { padding: 70px 1.5rem; }
-    .cards-grid, .steps-grid, .who-grid { grid-template-columns: 1fr; }
+    .cards-grid, .steps-grid, .who-grid, .benchmark-grid { grid-template-columns: 1fr; }
     .not-for-list { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    .hero-visual { display: none; }
     #hero { padding: 130px 1.5rem 70px; }
-    .hero-trust { gap: 1rem; }
     .roi-strip { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+    .roi-divider { display: none; }
+    .after-steps { grid-template-columns: 1fr; }
+    .compare-table th, .compare-table td { padding: 0.75rem 0.75rem; font-size: 0.82rem; }
     .footer-inner { flex-direction: column; gap: 1.5rem; }
     .footer-right { text-align: left; }
     .footer-links { flex-wrap: wrap; gap: 1rem; }
     .footer-bottom { flex-direction: column; }
     .risk-signals { flex-direction: column; align-items: center; }
+    .founder-block { flex-direction: column; }
+    .report-stats { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 480px) {
     h1.hero-headline { font-size: 2rem; }
     .hero-ctas { flex-direction: column; }
     .hero-ctas .btn { text-align: center; }
+    .report-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   }
 
   /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards;
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; animation: fadeUp 0.6s ease forwards; }
   .fade-up-delay-1 { animation-delay: 0.1s; }
   .fade-up-delay-2 { animation-delay: 0.2s; }
   .fade-up-delay-3 { animation-delay: 0.3s; }
@@ -942,7 +356,6 @@
 <section id="hero">
   <div class="hero-bg">
     <svg class="hero-grid" viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Pipeline network -->
       <circle cx="300" cy="80" r="30" stroke="#1a1a2e" stroke-width="1.5"/>
       <circle cx="300" cy="80" r="10" fill="#1a1a2e"/>
       <line x1="300" y1="110" x2="180" y2="200" stroke="#1a1a2e" stroke-width="1"/>
@@ -977,12 +390,10 @@
       <rect x="160" y="460" width="80" height="40" rx="8" stroke="#1a7a4a" stroke-width="1.5" opacity="0.6"/>
       <rect x="260" y="460" width="80" height="40" rx="8" stroke="#1a7a4a" stroke-width="1.5" opacity="0.6"/>
       <rect x="360" y="460" width="80" height="40" rx="8" stroke="#1a7a4a" stroke-width="1.5" opacity="0.6"/>
-      <!-- Grid lines -->
       <line x1="0" y1="100" x2="600" y2="100" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="0" y1="200" x2="600" y2="200" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="0" y1="300" x2="600" y2="300" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="0" y1="400" x2="600" y2="400" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="500" x2="600" y2="500" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="100" y1="0" x2="100" y2="700" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="200" y1="0" x2="200" y2="700" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
       <line x1="300" y1="0" x2="300" y2="700" stroke="#1a1a2e" stroke-width="0.5" opacity="0.3"/>
@@ -993,8 +404,9 @@
   <div class="hero-inner">
     <div class="hero-content fade-up">
       <div class="section-label">B2B Outbound for IT Services</div>
+      <!-- CHANGE 9: Rewritten hero sub-headline -->
       <h1 class="hero-headline">Predictable<br><em>International Meetings</em><br>for IT Services Companies</h1>
-      <p class="hero-sub">We build and run your entire outbound engine — targeting, campaigns, inbox, bookings. You just take the meetings.</p>
+      <p class="hero-sub">Your next international client is reachable by cold outreach. The only missing piece is a system that runs consistently — not one email blast, not a freelancer with templates, but a managed engine that improves every week. That is what we build and run for you.</p>
       <div class="hero-ctas">
         <a href="https://calendly.com/kushc-crestviewgrowthpartners/30min" target="_blank" class="btn btn-primary">Book a Free Discovery Call</a>
         <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
@@ -1060,36 +472,12 @@
     <h2 class="section-title">Your Outbound Engine. Fully Managed.</h2>
     <p class="section-sub">We handle everything from targeting to calendar booking. You focus on closing.</p>
     <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h3>Define Your ICP</h3>
-        <p>We work with you to identify exactly which companies and titles to target. Tight filters. No spray-and-pray. ICP refinement continues monthly on retainer.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h3>Build Your List</h3>
-        <p>Apollo list build, NeverBounce verification, deduplication. 300–500 verified contacts per sprint, 200–400 fresh per week on retainer.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h3>Set Up Infrastructure</h3>
-        <p>Sending domains, Smartlead configuration, deliverability setup, inbox health monitoring. All done for you before a single email goes out.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <h3>Launch Campaigns</h3>
-        <p>Multi-step email sequences plus a LinkedIn coordination layer running in parallel. Every touch is monitored daily for bounces and spam signals.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">05</div>
-        <h3>Manage Replies</h3>
-        <p>Every positive reply flagged within 2 hours. We handle qualification. Meetings booked directly into your Calendly with handoff notes included.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">06</div>
-        <h3>Optimize Weekly</h3>
-        <p>Copy testing, ICP refinement, offer iteration. Weekly performance reports on positive replies and meetings booked — never vanity metrics.</p>
-      </div>
+      <div class="step-card"><div class="step-num">01</div><h3>Define Your ICP</h3><p>We work with you to identify exactly which companies and titles to target. Tight filters. No spray-and-pray. ICP refinement continues monthly on retainer.</p></div>
+      <div class="step-card"><div class="step-num">02</div><h3>Build Your List</h3><p>Apollo list build, NeverBounce verification, deduplication. 300–500 verified contacts per sprint, 200–400 fresh per week on retainer.</p></div>
+      <div class="step-card"><div class="step-num">03</div><h3>Set Up Infrastructure</h3><p>Sending domains, Smartlead configuration, deliverability setup, inbox health monitoring. All done for you before a single email goes out.</p></div>
+      <div class="step-card"><div class="step-num">04</div><h3>Launch Campaigns</h3><p>Multi-step email sequences plus a LinkedIn coordination layer running in parallel. Every touch is monitored daily for bounces and spam signals.</p></div>
+      <div class="step-card"><div class="step-num">05</div><h3>Manage Replies</h3><p>Every positive reply flagged within 2 hours. We handle qualification. Meetings booked directly into your Calendly with handoff notes included.</p></div>
+      <div class="step-card"><div class="step-num">06</div><h3>Optimize Weekly</h3><p>Copy testing, ICP refinement, offer iteration. Weekly performance reports on positive replies and meetings booked — never vanity metrics.</p></div>
     </div>
   </div>
 </section>
@@ -1101,18 +489,9 @@
     <h2 class="section-title">Built for IT Services Companies Selling Internationally</h2>
     <p class="section-sub">We run a focused system. It works for a specific type of company.</p>
     <div class="who-grid">
-      <div class="who-card">
-        <h3>The Right Company</h3>
-        <p>Software development agencies, IT outsourcing firms, nearshore providers, and managed IT services companies — selling high-ticket B2B services to UK, EU, or US buyers.</p>
-      </div>
-      <div class="who-card">
-        <h3>The Right Stage</h3>
-        <p>You have strong delivery capacity. You know who your ideal client is. But you don't have a predictable engine generating international meetings consistently. That's the gap we close.</p>
-      </div>
-      <div class="who-card">
-        <h3>The Right Markets</h3>
-        <p>We run outbound for companies targeting buyers in: United Kingdom, Germany, Netherlands, USA, Scandinavia, and other major EU and US enterprise markets.</p>
-      </div>
+      <div class="who-card"><h3>The Right Company</h3><p>Software development agencies, IT outsourcing firms, nearshore providers, and managed IT services companies — selling high-ticket B2B services to UK, EU, or US buyers.</p></div>
+      <div class="who-card"><h3>The Right Stage</h3><p>You have strong delivery capacity. You know who your ideal client is. But you don't have a predictable engine generating international meetings consistently. That's the gap we close.</p></div>
+      <div class="who-card"><h3>The Right Markets</h3><p>We run outbound for companies targeting buyers in: United Kingdom, Germany, Netherlands, USA, Scandinavia, and other major EU and US enterprise markets.</p></div>
     </div>
     <div class="not-for">
       <h3>We are not right for you if...</h3>
@@ -1133,8 +512,6 @@
     <h2 class="section-title">Three Ways to Work Together</h2>
     <p class="section-sub" style="font-style:italic;">Start with the sprint. Stay for the pipeline.</p>
     <div class="pricing-grid">
-
-      <!-- Card 1 -->
       <div class="pricing-card">
         <div class="pricing-badge">Most Popular Starting Point</div>
         <div class="pricing-name">The Spark Pilot</div>
@@ -1152,8 +529,6 @@
         <a href="https://calendly.com/kushc-crestviewgrowthpartners/30min" target="_blank" class="btn btn-primary pricing-cta">Start With the Sprint</a>
         <p class="pricing-note">No ongoing commitment. See the system working first.</p>
       </div>
-
-      <!-- Card 2 — FEATURED -->
       <div class="pricing-card featured">
         <div class="pricing-badge">Core Offer</div>
         <div class="pricing-name">The Pipeline Retainer</div>
@@ -1173,8 +548,6 @@
         <a href="https://calendly.com/kushc-crestviewgrowthpartners/30min" target="_blank" class="btn btn-primary pricing-cta">Book a Discovery Call</a>
         <p class="pricing-note">Most clients start with the Spark Pilot and convert here.</p>
       </div>
-
-      <!-- Card 3 -->
       <div class="pricing-card">
         <div class="pricing-badge">For Serious Scale</div>
         <div class="pricing-name">GTM Growth Partner</div>
@@ -1194,7 +567,215 @@
         <a href="https://calendly.com/kushc-crestviewgrowthpartners/30min" target="_blank" class="btn btn-primary pricing-cta">Let's Talk</a>
         <p class="pricing-note">For companies entering two international markets simultaneously.</p>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- CHANGE 2: HOW WE'RE DIFFERENT — Comparison Table -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-label">Why Crestview</div>
+    <h2 class="section-title">How We Compare</h2>
+    <p class="section-sub">Most agencies charge more, lock you in longer, and assign a junior to your account. Here is the honest comparison.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-us">Crestview</th>
+            <th class="col-agency">Typical Agency</th>
+            <th class="col-sdr">In-House SDR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly Cost</td>
+            <td class="col-us"><span class="check">✓</span> €2,950</td>
+            <td class="col-agency">€5,000–€15,000</td>
+            <td class="col-sdr">€3,000–€5,000</td>
+          </tr>
+          <tr>
+            <td>Contract</td>
+            <td class="col-us"><span class="check">✓</span> Cancel anytime</td>
+            <td class="col-agency">6-month minimum</td>
+            <td class="col-sdr">Permanent hire</td>
+          </tr>
+          <tr>
+            <td>Pricing Transparency</td>
+            <td class="col-us"><span class="check">✓</span> Published openly</td>
+            <td class="col-agency">Hidden — needs a call</td>
+            <td class="col-sdr">N/A</td>
+          </tr>
+          <tr>
+            <td>Who Runs It</td>
+            <td class="col-us"><span class="check">✓</span> Founder personally</td>
+            <td class="col-agency">Junior account manager</td>
+            <td class="col-sdr">New employee</td>
+          </tr>
+          <tr>
+            <td>Time to First Campaign</td>
+            <td class="col-us"><span class="check">✓</span> 5–7 days</td>
+            <td class="col-agency">3–6 weeks onboarding</td>
+            <td class="col-sdr">2–3 months</td>
+          </tr>
+          <tr>
+            <td>Market Specialisation</td>
+            <td class="col-us"><span class="check">✓</span> IT services only</td>
+            <td class="col-agency">50+ industries</td>
+            <td class="col-sdr">Generic</td>
+          </tr>
+          <tr>
+            <td>Entry Point</td>
+            <td class="col-us"><span class="check">✓</span> €1,750 sprint</td>
+            <td class="col-agency">Full retainer only</td>
+            <td class="col-sdr">Full salary from day one</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGE 5: BENCHMARKS SECTION -->
+<section id="benchmarks">
+  <div class="container">
+    <div class="section-label">What to Expect</div>
+    <h2 class="section-title">Our Benchmarks</h2>
+    <p class="section-sub">We do not overpromise. Here is what well-run outbound campaigns in our target markets actually produce.</p>
+    <div class="benchmark-grid">
+      <div class="benchmark-card">
+        <div class="benchmark-number">5–8%</div>
+        <div class="benchmark-label">Positive Reply Rate</div>
+        <div class="benchmark-desc">For IT services companies targeting UK and EU buyers with tight ICP targeting</div>
+      </div>
+      <div class="benchmark-card">
+        <div class="benchmark-number">4–8</div>
+        <div class="benchmark-label">Qualified Meetings / Month</div>
+        <div class="benchmark-desc">On the Pipeline Retainer, once the system reaches its optimization stride in weeks 5–8</div>
+      </div>
+      <div class="benchmark-card">
+        <div class="benchmark-number">7–10</div>
+        <div class="benchmark-label">Days to First Reply</div>
+        <div class="benchmark-desc">Most clients see their first positive reply within the first week of the Spark Pilot</div>
+      </div>
+    </div>
+    <div class="benchmark-note">
+      <p>"Well-run outbound campaigns for IT services companies in Poland and the UK generate 5–8% positive reply rates and 4–8 qualified meetings per month. Our system is built around hitting the upper end of that range through tight ICP targeting, weekly copy optimization, and a multichannel email and LinkedIn sequence."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGE 7: WHAT YOU WILL SEE IN THE SPRINT REPORT -->
+<section id="sample-report">
+  <div class="container">
+    <div class="section-label">The Deliverable</div>
+    <h2 class="section-title">What You'll See in the Sprint Report</h2>
+    <p class="section-sub">At the end of your 14-day sprint you receive a full performance report. Here is exactly what it looks like.</p>
+    <div class="report-mockup">
+      <div class="report-header">
+        <div class="report-title">Sprint Report — Sample Format · Anonymised</div>
+        <div class="report-badge">DAY 14 REPORT</div>
+      </div>
+      <div class="report-stats">
+        <div class="report-stat">
+          <div class="report-stat-num" style="color:#ffffff;">312</div>
+          <div class="report-stat-label">Contacts Reached</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-num" style="color:#60a5fa;">42%</div>
+          <div class="report-stat-label">Open Rate</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-num" style="color:#6de0a0;">6.2%</div>
+          <div class="report-stat-label">Reply Rate</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-num" style="color:#6de0a0;">3</div>
+          <div class="report-stat-label">Meetings Booked</div>
+        </div>
+      </div>
+      <div class="report-rows">
+        <div class="report-row">
+          <div class="report-row-label">Positive replies received</div>
+          <div class="report-row-value positive">5 replies</div>
+        </div>
+        <div class="report-row">
+          <div class="report-row-label">Best performing sequence step</div>
+          <div class="report-row-value">Email 1 — Day 1 (3 of 5 replies)</div>
+        </div>
+        <div class="report-row">
+          <div class="report-row-label">Best performing ICP segment</div>
+          <div class="report-row-value">Fintech-focused dev agencies, 15–50 employees</div>
+        </div>
+        <div class="report-row">
+          <div class="report-row-label">Bounce rate</div>
+          <div class="report-row-value">1.8% — within healthy range</div>
+        </div>
+        <div class="report-row">
+          <div class="report-row-label">Recommended Month 1 changes</div>
+          <div class="report-row-value positive">Expand to healthcare vertical + test new subject line</div>
+        </div>
+      </div>
+      <div class="report-blur-note">SAMPLE FORMAT — actual metrics will reflect your specific campaign data</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGE 8: TRANSPARENT TIMELINE EXPECTATIONS -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label">Honest Timelines</div>
+    <h2 class="section-title">What Happens and When</h2>
+    <p class="section-sub">No "guaranteed results in 48 hours." Here is the honest timeline for how the system builds momentum.</p>
+    <div class="timeline-list">
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">1</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Day 1–2</div>
+          <div class="timeline-what">Onboarding &amp; Setup</div>
+          <div class="timeline-desc">ICP definition call completed. Apollo list built, verified, and cleaned. Sending infrastructure configured. You review and approve before anything goes out.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">2</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Day 5–7</div>
+          <div class="timeline-what">Campaign Live</div>
+          <div class="timeline-desc">First emails sending. LinkedIn connection requests running in parallel. Daily monitoring starts immediately — bounces, spam signals, inbox health.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">3</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Day 7–10</div>
+          <div class="timeline-what">First Replies Arrive</div>
+          <div class="timeline-desc">Most clients see their first positive replies within the first week. Every positive reply is flagged to you within 2 hours. Meetings booked directly into your Calendly.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">4</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Day 14</div>
+          <div class="timeline-what">Sprint Report Delivered</div>
+          <div class="timeline-desc">Full performance report: contacts reached, open rate, reply rate, positive replies, meetings booked, best-performing segments, and specific recommendations for Month 1. Debrief call scheduled.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">5</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Month 1–2 on Retainer</div>
+          <div class="timeline-what">Optimization Cycle Begins</div>
+          <div class="timeline-desc">Copy testing, ICP expansion, offer refinement. The system improves weekly based on real data. Reply quality typically improves in weeks 5–8 as targeting sharpens.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"><div class="timeline-dot">6</div><div class="timeline-line"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-when">Month 2–3</div>
+          <div class="timeline-what">Full Efficiency</div>
+          <div class="timeline-desc">The system reaches its stride. Targeting is refined. Messaging is proven. Meeting volume is consistent. This is when the pipeline becomes genuinely predictable.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1222,138 +803,142 @@
     <h2 class="section-title">Common Questions</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Do you guarantee meetings?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">We don't guarantee a specific number — no honest outbound system can. What we do guarantee is that the system is built, running, and optimized correctly. Our KPI is positive replies and meetings booked, and we report on both weekly. Most clients see their first positive reply within the first 7–10 days of the sprint.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">Do you guarantee meetings?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We don't guarantee a specific number — no honest outbound system can. What we do guarantee is that the system is built, running, and optimized correctly. Our KPI is positive replies and meetings booked, and we report on both weekly. Most clients see their first positive reply within the first 7–10 days of the sprint.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          What makes this different from other lead gen agencies?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">We don't sell leads. We run your outbound engine end-to-end — targeting, infrastructure, sequences, reply management, and calendar bookings. We're measured on meetings, not open rates. And we start with a low-risk sprint so you see the system working before committing to a monthly retainer.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">What makes this different from other lead gen agencies?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We don't sell leads. We run your outbound engine end-to-end — targeting, infrastructure, sequences, reply management, and calendar bookings. We're measured on meetings, not open rates. And we start with a low-risk sprint so you see the system working before committing to a monthly retainer.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          How quickly can you get started?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Onboarding call within 48 hours of payment. Campaign live within 5–7 days. First replies typically arrive in Week 1.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">How quickly can you get started?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Onboarding call within 48 hours of payment. Campaign live within 5–7 days. First replies typically arrive in Week 1.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Do I need to do anything once we start?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Minimal involvement. You join a 45-minute onboarding call to define your ICP and confirm your target markets. After that, we handle everything. You respond to the meetings we book.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">Do I need to do anything once we start?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Minimal involvement. You join a 45-minute onboarding call to define your ICP and confirm your target markets. After that, we handle everything. You respond to the meetings we book.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          What if the sprint doesn't generate results?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">We diagnose exactly what happened and why. In our experience, weak sprint results come from one of three things: ICP targeting needs refinement, offer positioning needs adjustment, or the market segment needs expansion. We present our diagnosis and recommended changes. You decide whether to continue.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">What if the sprint doesn't generate results?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We diagnose exactly what happened and why. In our experience, weak sprint results come from one of three things: ICP targeting needs refinement, offer positioning needs adjustment, or the market segment needs expansion. We present our diagnosis and recommended changes. You decide whether to continue.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Who is this not right for?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Companies under €500K revenue, one-person operations, companies not ready to close meetings, and companies looking to build outbound in-house. We're a fully managed solution — not a tool or a training programme.</div>
-        </div>
+        <button class="faq-question" aria-expanded="false">Who is this not right for?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Companies under €500K revenue, one-person operations, companies not ready to close meetings, and companies looking to build outbound in-house. We're a fully managed solution — not a tool or a training programme.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT — with Changes 4, 6, 10 applied -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-content">
         <div class="section-label">About</div>
         <h2 class="section-title">Built by an Operator,<br>Not an Agency</h2>
-        <p>Crestview Growth Partners was built to solve one specific problem: IT services companies have strong delivery but no predictable international pipeline.</p>
+        <!-- CHANGE 10: Rewritten about opening -->
+        <p>Most outbound fails for IT services companies because the targeting is too broad, the messaging leads with capabilities instead of outcomes, and the follow-up stops after one email. We built Crestview specifically to fix all three.</p>
         <p>We run the same outbound system we sell — every client acquisition at Crestview comes from the exact process we deploy for our clients. We work with a small number of clients at any time to ensure every engagement gets the attention it deserves.</p>
+
+        <!-- CHANGE 4: Experiencing the product line -->
+        <div class="experiencing-product">
+          <p>If you received an outbound email or LinkedIn message that brought you to this page — that came from the same system we build for clients. <strong>The targeting, the sequence, the personalization. You are experiencing the product right now.</strong></p>
+        </div>
+
         <div class="about-signals">
-          <div class="about-signal">
-            <div class="signal-icon">⚙️</div>
-            <p><strong>Same system we use to acquire our own clients.</strong> No agency smoke and mirrors — we eat our own cooking.</p>
-          </div>
-          <div class="about-signal">
-            <div class="signal-icon">🌍</div>
-            <p><strong>Working with IT companies across Poland, UK, Netherlands, LatAm, and Israel.</strong></p>
-          </div>
-          <div class="about-signal">
-            <div class="signal-icon">👤</div>
-            <p><strong>Solo operator model.</strong> Direct access to the person running your campaigns — not an account manager reading a dashboard.</p>
+          <div class="about-signal"><div class="signal-icon">⚙️</div><p><strong>Same system we use to acquire our own clients.</strong> No agency smoke and mirrors — we eat our own cooking.</p></div>
+          <div class="about-signal"><div class="signal-icon">🌍</div><p><strong>Working with IT companies across Poland, UK, Netherlands, LatAm, and Israel.</strong></p></div>
+          <div class="about-signal"><div class="signal-icon">👤</div><p><strong>Solo operator model.</strong> Direct access to the person running your campaigns — not an account manager reading a dashboard.</p></div>
+        </div>
+
+        <!-- CHANGE 6: Founder credibility block -->
+        <div class="founder-block">
+          <div class="founder-avatar">K</div>
+          <div class="founder-info">
+            <h4>Kush Chugh</h4>
+            <div class="founder-title">Founder, Crestview Growth Partners</div>
+            <p>I have spent the last year specifically studying how IT services companies in Poland, UK, and the Netherlands acquire international enterprise clients — the ICP that responds, the messaging angles that convert, the infrastructure that keeps campaigns out of spam. That focus is what I bring. Not a generic outbound system applied to whatever vertical calls next.</p>
           </div>
         </div>
       </div>
+
+      <!-- CHANGE 1: Live System View widget REMOVED — replaced with clean process visual -->
       <div class="about-visual">
         <div class="pipeline-flow">
-          <div style="font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;">Live System View</div>
+          <div style="font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.25rem;">The System Stack</div>
           <div class="pipe-step">
             <div class="pipe-step-num">01</div>
             <div class="pipe-step-icon">🎯</div>
-            <div class="pipe-step-text">ICP targeting — 347 contacts queued</div>
-            <div class="pipe-step-tag">ACTIVE</div>
+            <div class="pipe-step-text">Apollo — ICP targeting &amp; list build</div>
+            <div class="pipe-step-tag">LIST</div>
           </div>
           <div class="pipe-step">
             <div class="pipe-step-num">02</div>
-            <div class="pipe-step-icon">📧</div>
-            <div class="pipe-step-text">Smartlead campaign — Step 2 live</div>
-            <div class="pipe-step-tag">RUNNING</div>
+            <div class="pipe-step-icon">✅</div>
+            <div class="pipe-step-text">NeverBounce — email verification</div>
+            <div class="pipe-step-tag">HYGIENE</div>
           </div>
           <div class="pipe-step">
             <div class="pipe-step-num">03</div>
-            <div class="pipe-step-icon">💼</div>
-            <div class="pipe-step-text">LinkedIn layer — 28 pending DMs</div>
-            <div class="pipe-step-tag">RUNNING</div>
+            <div class="pipe-step-icon">📧</div>
+            <div class="pipe-step-text">Smartlead — campaign execution</div>
+            <div class="pipe-step-tag">OUTREACH</div>
           </div>
           <div class="pipe-step">
             <div class="pipe-step-num">04</div>
-            <div class="pipe-step-icon">💬</div>
-            <div class="pipe-step-text">3 positive replies flagged today</div>
-            <div class="pipe-step-tag" style="background:rgba(26,122,74,0.4);color:#6de0a0;">NEW</div>
+            <div class="pipe-step-icon">💼</div>
+            <div class="pipe-step-text">LinkedIn — coordination layer</div>
+            <div class="pipe-step-tag">MULTICHANNEL</div>
           </div>
           <div class="pipe-step">
             <div class="pipe-step-num">05</div>
-            <div class="pipe-step-icon">📅</div>
-            <div class="pipe-step-text">2 meetings booked this week</div>
-            <div class="pipe-step-tag" style="background:rgba(26,122,74,0.4);color:#6de0a0;">BOOKED</div>
+            <div class="pipe-step-icon">💬</div>
+            <div class="pipe-step-text">Gmail — reply management</div>
+            <div class="pipe-step-tag">REPLIES</div>
           </div>
-          <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.07);">
-            <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-bottom:0.6rem;">WEEK 2 REPORT</div>
-            <div style="display:flex;gap:1.5rem;">
-              <div>
-                <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#ffffff;letter-spacing:-0.04em;">6.2%</div>
-                <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);">Reply rate</div>
-              </div>
-              <div>
-                <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#6de0a0;letter-spacing:-0.04em;">5</div>
-                <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);">Positive replies</div>
-              </div>
-              <div>
-                <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#6de0a0;letter-spacing:-0.04em;">2</div>
-                <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);">Meetings booked</div>
-              </div>
-            </div>
+          <div class="pipe-step">
+            <div class="pipe-step-num">06</div>
+            <div class="pipe-step-icon">📅</div>
+            <div class="pipe-step-text">Calendly — meeting bookings</div>
+            <div class="pipe-step-tag">BOOKED</div>
+          </div>
+          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);">
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">OPTIMIZED WEEKLY ON</div>
+            <div style="font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.6;">Copy · Targeting · Offer angles · ICP segments · Reply quality</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGE 3: WHAT HAPPENS AFTER YOU BOOK -->
+<section id="after-booking">
+  <div class="container">
+    <div class="section-label">No Surprises</div>
+    <h2 class="section-title">What Happens After You Book a Call</h2>
+    <p class="section-sub">Every step is transparent. Here is exactly what to expect from the moment you book through to campaigns going live.</p>
+    <div class="after-steps">
+      <div class="after-step">
+        <div class="after-step-num">1</div>
+        <h4>20-Minute Discovery Call</h4>
+        <p>We diagnose your current pipeline, target markets, and ICP. No pitch deck. Just a real conversation about what qualified meetings would mean for your business.</p>
+      </div>
+      <div class="after-step">
+        <div class="after-step-num">2</div>
+        <h4>Live Apollo Demo</h4>
+        <p>We show you exactly what your ICP targeting would look like in Apollo — the filters, the segments, the contact volume. You see the list before anything is built.</p>
+      </div>
+      <div class="after-step">
+        <div class="after-step-num">3</div>
+        <h4>Sprint Starts Within 48 Hours</h4>
+        <p>If the fit is right, we send the Spark Pilot invoice. Onboarding call booked within 48 hours. No lengthy contracts. No agency onboarding bureaucracy.</p>
+      </div>
+      <div class="after-step">
+        <div class="after-step-num">4</div>
+        <h4>Campaigns Live in 5–7 Days</h4>
+        <p>List built, verified, and loaded. Sequences written and launched. First emails going out within a week of your onboarding call. First data arriving in days.</p>
       </div>
     </div>
   </div>
@@ -1385,6 +970,7 @@
     <ul class="footer-links">
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#comparison">Why Crestview</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="https://calendly.com/kushc-crestviewgrowthpartners/30min" target="_blank">Book a Call</a></li>
     </ul>
@@ -1399,7 +985,7 @@
 </footer>
 
 <script>
-  // Sticky nav scroll shadow
+  // Sticky nav
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 10);
@@ -1408,9 +994,7 @@
   // Mobile nav toggle
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-  });
+  hamburger.addEventListener('click', () => { mobileNav.classList.toggle('open'); });
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => mobileNav.classList.remove('open'));
   });
@@ -1421,15 +1005,11 @@
       const item = btn.closest('.faq-item');
       const answer = item.querySelector('.faq-answer');
       const isOpen = item.classList.contains('open');
-
-      // Close all
       document.querySelectorAll('.faq-item').forEach(i => {
         i.classList.remove('open');
         i.querySelector('.faq-answer').style.maxHeight = '0';
         i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
-
-      // Open clicked if was closed
       if (!isOpen) {
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -1438,20 +1018,19 @@
     });
   });
 
-  // Smooth scroll for anchor links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const offset = 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
 
-  // Simple scroll-triggered fade-in for sections
+  // Scroll-triggered fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1462,7 +1041,7 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.card, .step-card, .who-card, .pricing-card, .about-signal').forEach(el => {
+  document.querySelectorAll('.card, .step-card, .who-card, .pricing-card, .about-signal, .benchmark-card, .after-step, .timeline-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(16px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
